@@ -1,0 +1,84 @@
+#filename: keepMinecraftAlive.py
+#author: Seamus Finlayson
+#date: 2022-12-26
+
+#include libraries
+import pyautogui
+import time
+import keyboard
+import pygetwindow
+
+#debug only
+# while True:
+#     windowTitle = str(pygetwindow.getActiveWindowTitle())
+#     print(windowTitle)
+#     if windowTitle.startswith("Minecraft ") and windowTitle.count("Multiplayer"):
+#         print("good window")
+#     else :
+#         print("bad window")
+#     time.sleep(1)
+
+#startup
+print("*************************************************************")
+print("Minecrat AFK Mouse Clicker")
+print("Places and breaks a torch every 5 seconds through automated mouse clicks.")
+print("In Minecraft equip a torch and face a wall.")
+print("Press 'i' to toggle clicking on and off.")
+print("Press 'o' (the letter) to terminate this program.")
+print("Key presses are only registered when Minecraft is the active window and you are playing Multiplayer.")
+print("*************************************************************")
+print("stopped")
+
+#initialize timer
+startTime = time.time()
+
+#state machine setup and state meanings
+#state = 0 => inactive state where nothing happens
+#state = 1 => placing torches every 5 seconds
+state = 0
+
+#flag to exit program
+quit = False
+
+#main loop
+while not quit:
+
+    #check if minecraft in multiplayer is the active window
+    windowTitle = str(pygetwindow.getActiveWindowTitle())
+    if windowTitle.startswith("Minecraft ") and windowTitle.count("Multiplayer"):
+
+        #detect escape key pressed
+        if keyboard.is_pressed('o'):
+            quit = True
+
+        #toggle script on and off
+        if keyboard.is_pressed('i'):
+            if state == 0:
+                print("started")
+                state = 1
+            elif state == 1:
+                print("stopped")
+                state = 0
+            
+            #debounce so it doesnt toggle more than once
+            time.sleep(0.5)
+
+        #state machine
+        match state:
+            case 0:
+                pass
+
+            case 1:
+                #check if start time is more than 5 seconds ago
+                if (time.time() - startTime) > 5:
+
+                    #place and break torch
+                    print("placed")
+                    pyautogui.click(button='right') #place torch
+                    pyautogui.click() #break torch
+
+                    #reset timer
+                    startTime = time.time()
+            
+#exit program
+print("Exit key pressed. Program done.\n")

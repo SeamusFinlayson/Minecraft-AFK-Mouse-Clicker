@@ -29,8 +29,11 @@ print("Key presses are only registered when Minecraft is the active window and y
 print("*************************************************************")
 print("stopped")
 
-#initialize timer
+#initialize timer and polling frequency
 startTime = time.time()
+
+#variable to lock maximum polling frequency at 20Hz
+startPoll = time.time()
 
 #state machine setup and state meanings
 #state = 0 => inactive state where nothing happens
@@ -42,6 +45,9 @@ quit = False
 
 #main loop
 while not quit:
+
+    #check time at which polling cycle starts
+    startPoll = time.time()
 
     #check if minecraft in multiplayer is the active window
     windowTitle = str(pygetwindow.getActiveWindowTitle())
@@ -79,6 +85,15 @@ while not quit:
 
                     #reset timer
                     startTime = time.time()
+
+    #calulate time to wait before next poll should occur
+    timeToIdle = 50E-3 - (time.time() - startPoll)
+    # print("Idle time", timeToIdle * 1000, " ms") #debug only
+
+    #only sleep if delay is a valid duration
+    if timeToIdle > 0:
+        time.sleep(timeToIdle)
+
             
 #exit program
 print("Exit key pressed. Program done.\n")

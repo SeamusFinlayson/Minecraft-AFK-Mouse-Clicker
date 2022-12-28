@@ -8,9 +8,6 @@ import time
 import keyboard
 import pygetwindow
 
-#constants
-ESC = chr(27).encode()
-
 #debug only
 # while True:
 #     windowTitle = str(pygetwindow.getActiveWindowTitle())
@@ -65,9 +62,6 @@ while not quit:
             if state == 0:
                 print("started")
                 state = 1
-            
-            #debounce so it doesnt toggle more than once
-            # time.sleep(0.5)
 
         #turn  clicking off
         if (keyboard.is_pressed('u') or 

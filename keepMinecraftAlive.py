@@ -8,6 +8,9 @@ import time
 import keyboard
 import pygetwindow
 
+#constants
+ESC = chr(27).encode()
+
 #debug only
 # while True:
 #     windowTitle = str(pygetwindow.getActiveWindowTitle())
@@ -37,7 +40,7 @@ startPoll = time.time()
 
 #state machine setup and state meanings
 #state = 0 => inactive state where nothing happens
-#state = 1 => placing torches every 5 seconds
+#state = 1 => clicking on, placing torches every 5 seconds
 state = 0
 
 #flag to exit program
@@ -53,21 +56,27 @@ while not quit:
     windowTitle = str(pygetwindow.getActiveWindowTitle())
     if windowTitle.startswith("Minecraft ") and windowTitle.count("Multiplayer"):
 
-        #detect escape key pressed
+        #detect exit key pressed
         if keyboard.is_pressed('o'):
             quit = True
 
-        #toggle script on and off
+        #turn clicking on on
         if keyboard.is_pressed('i'):
             if state == 0:
                 print("started")
                 state = 1
-            elif state == 1:
-                print("stopped")
-                state = 0
             
             #debounce so it doesnt toggle more than once
-            time.sleep(0.5)
+            # time.sleep(0.5)
+
+        #turn  clicking off
+        if (keyboard.is_pressed('u') or 
+            keyboard.is_pressed('e') or 
+            keyboard.is_pressed('escape') or 
+            keyboard.is_pressed('space')):
+            if state == 1:
+                print("stopped")
+                state = 0
 
         #state machine
         match state:

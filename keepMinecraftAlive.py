@@ -44,6 +44,13 @@ state = 0
 #flag to exit program
 quit = False
 
+#place and break torch
+def doTorchAction():
+        
+    print("doing torch action")
+    pyautogui.click(button='right') #place torch
+    pyautogui.click() #break torch
+
 #main loop
 while not quit:
 
@@ -61,10 +68,16 @@ while not quit:
         #turn clicking on on
         if keyboard.is_pressed('i'):
             if state == 0:
+
                 print("started")
                 state = 1
 
-        #turn  clicking off
+                doTorchAction()
+
+                #reset timer
+                startTime = time.time()
+
+        #turn clicking off
         if (keyboard.is_pressed('u') or 
             keyboard.is_pressed('e') or 
             keyboard.is_pressed('escape') or 
@@ -82,10 +95,7 @@ while not quit:
                 #check if start time is more than 5 seconds ago
                 if (time.time() - startTime) > 5:
 
-                    #place and break torch
-                    print("placed")
-                    pyautogui.click(button='right') #place torch
-                    pyautogui.click() #break torch
+                    doTorchAction()
 
                     #reset timer
                     startTime = time.time()

@@ -24,9 +24,9 @@ print("*************************************************************")
 print("Minecrat AFK Mouse Clicker")
 print("Places and breaks a torch every 5 seconds through automated mouse clicks.")
 print("In Minecraft equip a torch and face a wall.")
-print("Press 'i' to turn clicking on.")
-print("Press 'u' to turn clicking off. Clicking will automatically turn off when you jump, enter your inventory, or enter the game menu.")
-print("Press 'o' (the letter) to terminate this program.")
+print("Press 'ctrl + i' to turn clicking on.")
+print("Press 'ctrl + u' to turn clicking off. Clicking will automatically turn off when you jump, enter your inventory, or enter the game menu.")
+print("Press 'ctrl + o' (the letter) to terminate this program.")
 print("Key presses are only registered when Minecraft is the active window and you are playing Multiplayer.")
 print("*************************************************************")
 print("stopped")
@@ -110,11 +110,11 @@ while not quit:
     if windowTitle.startswith("Minecraft ") and windowTitle.count("Multiplayer"):
 
         #detect exit key pressed
-        if keyboard.is_pressed('o'):
+        if keyboard.is_pressed('ctrl+o'):
             quit = True
 
         #turn clicking on on
-        if keyboard.is_pressed('i'):
+        if keyboard.is_pressed('ctrl+i'):
 
             if state == 0:
 
@@ -127,16 +127,16 @@ while not quit:
                 doTorchAction()
 
                 #send afk message to server
-                pyautogui.write('t')
-                pyautogui.write("automated message: afk")
-                pyautogui.press('enter')
+                # pyautogui.write('t')
+                # pyautogui.write("automated message: afk")
+                # pyautogui.press('enter')
 
                 #reset timers
                 clickingTimer = time.time()
                 afkMessageTimer = time.time()
 
         #turn clicking off
-        if (keyboard.is_pressed('u') or 
+        if (keyboard.is_pressed('ctrl+u') or 
             keyboard.is_pressed('e') or 
             keyboard.is_pressed('escape') or 
             keyboard.is_pressed('space')):
@@ -150,9 +150,9 @@ while not quit:
                 state = 0
 
                 #send afk message to server
-                pyautogui.write('t')
-                pyautogui.write("automated message: back")
-                pyautogui.press('enter')
+                # pyautogui.write('t')
+                # pyautogui.write("automated message: back")
+                # pyautogui.press('enter')
 
         #state machine
         match state:

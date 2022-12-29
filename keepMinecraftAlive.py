@@ -32,7 +32,6 @@ print("Press 'ctrl + u' to turn clicking off. Clicking will automatically turn o
 print("Press 'ctrl + o' (the letter) to terminate this program.")
 print("Key presses are only registered when Minecraft is the active window and you are playing Multiplayer.")
 print("*************************************************************")
-print("stopped")
 
 #initialize timer for clicking frequency
 clickingTimer = time.time()
@@ -103,6 +102,8 @@ CLICKING = 1
 TYPING = 2
 #set initial state to inactive
 state = INACTIVE
+#indicate state in terminal
+print("inactive")
 
 #flag to exit program
 quit = False

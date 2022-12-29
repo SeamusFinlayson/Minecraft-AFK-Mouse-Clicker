@@ -9,6 +9,9 @@ import keyboard
 import pygetwindow
 import random
 
+#seed random number generation
+random.seed()
+
 #debug only
 # while True:
 #     windowTitle = str(pygetwindow.getActiveWindowTitle())
@@ -31,7 +34,7 @@ print("Key presses are only registered when Minecraft is the active window and y
 print("*************************************************************")
 print("stopped")
 
-#initialize timer and polling frequency
+#initialize timer for clicking frequency
 clickingTimer = time.time()
 
 #variable to lock maximum polling frequency at 20Hz
@@ -39,17 +42,6 @@ pollFrequencyTimer = time.time()
 
 #variable for sending an AFK message every 15 minutes
 afkMessageTimer = time.time()
-
-#seed random number generation
-random.seed()
-
-#state machine setup and state meanings
-#state = 0 => inactive state where nothing happens
-#state = 1 => clicking on, placing torches every 5 seconds
-state = 0
-
-#flag to exit program
-quit = False
 
 #place and break torch
 def doTorchAction():
@@ -64,6 +56,9 @@ messageNumberTracker = random.randint(0, NUMBER_OF_MESSAGES)
 
 #send a random afk message
 def sendAfkMessage(messageNumber):
+
+    #tell user a message has been sent in terminal
+    print("message sent to chat")
 
     #open chat
     pyautogui.write('t')
@@ -99,6 +94,19 @@ def sendAfkMessage(messageNumber):
 
     return messageNumber
 
+#state machine setup and state meanings
+#state = 0 => inactive state, do nothing
+INACTIVE = 0
+#state = 1 => clicking state, placing torches every 5 seconds
+CLICKING = 1
+#state = 2 => typing state, ignore certain deactivating keys for state 1 while user is typing
+TYPING = 2
+#set initial state to inactive
+state = INACTIVE
+
+#flag to exit program
+quit = False
+
 #main loop
 while not quit:
 
@@ -113,68 +121,104 @@ while not quit:
         if keyboard.is_pressed('ctrl+o'):
             quit = True
 
-        #turn clicking on on
-        if keyboard.is_pressed('ctrl+i'):
-
-            if state == 0:
-
-                #indicate state update in terminal
-                print("started")
-
-                #change state
-                state = 1
-
-                doTorchAction()
-
-                #send afk message to server
-                # pyautogui.write('t')
-                # pyautogui.write("automated message: afk")
-                # pyautogui.press('enter')
-
-                #reset timers
-                clickingTimer = time.time()
-                afkMessageTimer = time.time()
-
         #turn clicking off
-        if (keyboard.is_pressed('ctrl+u') or 
-            keyboard.is_pressed('e') or 
-            keyboard.is_pressed('escape') or 
-            keyboard.is_pressed('space')):
+        if keyboard.is_pressed('ctrl+u'):
 
-            if state == 1:
-                
-                #indicate state update in terminal
-                print("stopped")
+            #indicate state change in terminal
+            print("inactive")
 
-                #change state
-                state = 0
+            #change state
+            state = 0
 
-                #send afk message to server
-                # pyautogui.write('t')
-                # pyautogui.write("automated message: back")
-                # pyautogui.press('enter')
+            #send afk message to server
+            # pyautogui.write('t')
+            # pyautogui.write("automated message: back")
+            # pyautogui.press('enter')
 
         #state machine
         match state:
             case 0:
-                pass
+                
+                #detect activation shortcut
+                if keyboard.is_pressed('ctrl+i'):
 
-            case 1:
-                #check if last click was more than 5 seconds ago
-                if (time.time() - clickingTimer) > 5:
+                    #indicate state change in terminal
+                    print("clicking")
+
+                    #switch to clicking state
+                    state = CLICKING
 
                     doTorchAction()
 
-                    #reset timer
+                    #send afk message to server
+                    # pyautogui.write('t')
+                    # pyautogui.write("automated message: afk")
+                    # pyautogui.press('enter')
+
+                    #reset timers
                     clickingTimer = time.time()
-
-                #check if last message was sent more than 15 minutes ago
-                if (time.time() - afkMessageTimer) > 15*60:
-                    
-                    messageNumberTracker = sendAfkMessage(messageNumberTracker)
-
-                    #reset timer
                     afkMessageTimer = time.time()
+
+            case 1:
+
+                #detect user movement in game
+                if (keyboard.is_pressed('e') or 
+                    keyboard.is_pressed('escape') or 
+                    keyboard.is_pressed('space')):
+
+                    #indicate state change in terminal
+                    print("inactive")
+
+                    #switch to inactive state
+                    state = INACTIVE
+
+                    #send afk message to server
+                    # pyautogui.write('t')
+                    # pyautogui.write("automated message: back")
+                    # pyautogui.press('enter')
+
+                #detect user entering typing menu
+                elif keyboard.is_pressed('t'):
+
+                    #indicate state change in terminal
+                    print("typing")
+                    
+                    #switch to state 2
+                    state = TYPING
+
+                else:
+
+                    #check if last click was more than 5 seconds ago
+                    if (time.time() - clickingTimer) > 5:
+
+                        doTorchAction()
+
+                        #reset timer
+                        clickingTimer = time.time()
+
+                    #check if last message was sent more than 15 minutes ago
+                    if (time.time() - afkMessageTimer) > 15*60:
+                        
+                        messageNumberTracker = sendAfkMessage(messageNumberTracker)
+
+                        #reset timer
+                        afkMessageTimer = time.time()
+
+            case 2:
+
+                #detect if typing menu is exited
+                if (keyboard.is_pressed('enter') or 
+                    keyboard.is_pressed('escape')):
+
+                    #indicate state change in terminal
+                    print("clicking")
+
+                    #switch to clciking state
+                    state = CLICKING
+
+                    #add delay so enter and escape are not immediately detected in the clicking state
+                    #600ms delay, some googling says key presses are 300ms on the long end, using safety factor of two
+                    time.sleep(0.6)
 
     #calulate time to wait before next poll should occur
     timeToIdle = 50E-3 - (time.time() - pollFrequencyTimer)

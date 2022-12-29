@@ -63,8 +63,8 @@ def sendAfkMessage(messageNumber):
     pyautogui.write('t')
 
     #clear chat before sending message
-    keyboard.press('ctrl+a')
-    keyboard.press('backspace')
+    pyautogui.press('ctrl+a')
+    pyautogui.press('backspace')
 
     #1 in 10 chance of sending message in the Enchantment Table's glyphs
     sendWeirdMessage = random.randint(0,9)
@@ -202,7 +202,7 @@ while not quit:
                         clickingTimer = time.time()
 
                     #check if last message was sent more than 15 minutes ago
-                    if (time.time() - afkMessageTimer) > 10*60:
+                    if (time.time() - afkMessageTimer) > 10:
                         
                         messageNumberTracker = sendAfkMessage(messageNumberTracker)
 

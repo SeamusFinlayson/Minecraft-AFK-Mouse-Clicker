@@ -62,6 +62,10 @@ def sendAfkMessage(messageNumber):
     #open chat
     pyautogui.write('t')
 
+    #clear chat before sending message
+    keyboard.press('ctrl+a')
+    keyboard.press('backspace')
+
     #1 in 10 chance of sending message in the Enchantment Table's glyphs
     sendWeirdMessage = random.randint(0,9)
 

@@ -51,6 +51,8 @@ def doTorchAction():
 
 #variable for tracking which message to send
 NUMBER_OF_MESSAGES = 3
+
+#initialize send random initial message
 messageNumberTracker = random.randint(0, NUMBER_OF_MESSAGES)
 
 #send a random afk message
@@ -132,8 +134,8 @@ while not quit:
             #indicate state change in terminal
             print("inactive")
 
-            #change state
-            state = 0
+            #change state to inactive
+            state = INACTIVE
 
             #send afk message to server
             # pyautogui.write('t')
@@ -165,6 +167,15 @@ while not quit:
                     afkMessageTimer = time.time()
 
             case 1:
+
+                #when the user presses the windows key
+                if keyboard.is_pressed('win'):
+
+                    #reset afk message timer
+                    afkMessageTimer = time.time()
+
+                    #indicate reset in terminal
+                    #print("message timer reset because win key was pressed") #debug only
 
                 #detect user movement in game
                 if (keyboard.is_pressed('e') or 
@@ -202,7 +213,7 @@ while not quit:
                         clickingTimer = time.time()
 
                     #check if last message was sent more than 15 minutes ago
-                    if (time.time() - afkMessageTimer) > 10:
+                    if (time.time() - afkMessageTimer) > 15*60:
                         
                         messageNumberTracker = sendAfkMessage(messageNumberTracker)
 
@@ -233,6 +244,5 @@ while not quit:
     if timeToIdle > 0:
         time.sleep(timeToIdle)
 
-            
 #exit program
 print("Exit key pressed. Program done.\n")

@@ -45,9 +45,34 @@ afkMessageTimer = time.time()
 #place and break torch
 def doTorchAction():
         
+    #indictate action in terminal
     print("doing torch action")
+
     pyautogui.click(button='right') #place torch
     pyautogui.click() #break torch
+
+#attack monster
+def doAttackingAction():
+
+    #indictate action in terminal
+    print("doing attacking action")
+
+    pyautogui.click() #swing weapon
+
+#eat food to regenerate hunger bar
+def doEatAction():
+
+    #indictate action in terminal
+    print("doing eating action")
+
+    #start eating
+    pyautogui.mouseDown(button='right')
+
+    #wait for eating to finish
+    time.sleep(2)
+
+    #release button when finished
+    pyautogui.mouseUp(button='right')
 
 #variable for tracking which message to send
 NUMBER_OF_MESSAGES = 3
@@ -100,14 +125,18 @@ def sendAfkMessage(messageNumber):
     return messageNumber
 
 #state machine setup and state meanings
-#state = 0 => inactive state, do nothing
+#state 0 => inactive state, do nothing
 INACTIVE = 0
-#state = 1 => clicking state, placing torches every 5 seconds
-CLICKING = 1
-#state = 2 => typing state, ignore certain deactivating keys for state 1 while user is typing
+#state 1 => torch placing state, placing torches every 5 seconds
+TORCH_PLACING = 1
+#state 2 => typing state, ignore certain deactivating keys for state 1 while user is typing
 TYPING = 2
+#state 3 => attacking state, attacks mobs in a mob farm while the user is afk
+ATTACKING = 3
 #set initial state to inactive
 state = INACTIVE
+#remember which state the typing state was entered from to return to that state
+stateLast = TORCH_PLACING
 #indicate state in terminal
 print("inactive")
 
@@ -150,12 +179,31 @@ while not quit:
                 if keyboard.is_pressed('ctrl+i'):
 
                     #indicate state change in terminal
-                    print("clicking")
+                    print("torch placing")
 
-                    #switch to clicking state
-                    state = CLICKING
+                    #switch to torchplacing state
+                    state = TORCH_PLACING
 
                     doTorchAction()
+
+                    #send afk message to server
+                    # pyautogui.write('t')
+                    # pyautogui.write("automated message: afk")
+                    # pyautogui.press('enter')
+
+                    #reset timers
+                    clickingTimer = time.time()
+                    afkMessageTimer = time.time()
+
+                if keyboard.is_pressed('ctrl+k'):
+
+                    #indicate state change in terminal
+                    print("attacking")
+
+                    #switch to torchplacing state
+                    state = ATTACKING
+
+                    doAttackingAction()
 
                     #send afk message to server
                     # pyautogui.write('t')
@@ -171,8 +219,9 @@ while not quit:
                 #when the user presses the windows key
                 if keyboard.is_pressed('win'):
 
-                    #reset afk message timer
+                    #reset timers
                     afkMessageTimer = time.time()
+                    clickingTimer = time.time()
 
                     #indicate reset in terminal
                     #print("message timer reset because win key was pressed") #debug only
@@ -202,6 +251,20 @@ while not quit:
                     #switch to state 2
                     state = TYPING
 
+                    #tell state 2 to come back to this state
+                    stateLast = TORCH_PLACING
+
+                #detect user request to switch to attacking state
+                elif keyboard.is_pressed('ctrl+k'):
+
+                    #indicate state change in terminal
+                    print("attacking")
+
+                    #change state
+                    state = ATTACKING
+
+                    doAttackingAction()
+
                 else:
 
                     #check if last click was more than 5 seconds ago
@@ -227,14 +290,86 @@ while not quit:
                     keyboard.is_pressed('escape')):
 
                     #indicate state change in terminal
-                    print("clicking")
+                    if stateLast == TORCH_PLACING:
+                        print("torch placing")
+                    elif stateLast == ATTACKING:
+                        print("attacking")
 
-                    #switch to clciking state
-                    state = CLICKING
+                    #switch to torch placing state
+                    state = stateLast
 
                     #add delay so enter and escape are not immediately detected in the clicking state
                     #600ms delay, some googling says key presses are 300ms on the long end, using safety factor of two
                     time.sleep(0.6)
+
+            case 3:
+
+                #when the user presses the windows key
+                if keyboard.is_pressed('win'):
+
+                    #reset timers
+                    afkMessageTimer = time.time()
+                    clickingTimer = time.time()
+
+                    #indicate reset in terminal
+                    #print("message timer reset because win key was pressed") #debug only
+
+                #detect user movement in game
+                if (keyboard.is_pressed('e') or 
+                    keyboard.is_pressed('escape') or 
+                    keyboard.is_pressed('space')):
+
+                    #indicate state change in terminal
+                    print("inactive")
+
+                    #switch to inactive state
+                    state = INACTIVE
+
+                    #send afk message to server
+                    # pyautogui.write('t')
+                    # pyautogui.write("automated message: back")
+                    # pyautogui.press('enter')
+
+                #detect user entering typing menu
+                elif keyboard.is_pressed('t'):
+
+                    #indicate state change in terminal
+                    print("typing")
+                    
+                    #switch to state 2
+                    state = TYPING
+
+                    #tell state 2 to come back to this state
+                    stateLast = ATTACKING
+
+                #detect user request to switch to torch placing state
+                elif keyboard.is_pressed('ctrl+i'):
+
+                    #indicate state change in terminal
+                    print("torch placing")
+
+                    #change state
+                    state = TORCH_PLACING
+
+                    doTorchAction()
+
+                else:
+
+                    #check if last click was more than 5 seconds ago
+                    if (time.time() - clickingTimer) > 5:
+
+                        doAttackingAction()
+
+                        #reset timer
+                        clickingTimer = time.time()
+
+                    #check if last message was sent more than 15 minutes ago
+                    if (time.time() - afkMessageTimer) > 15*60:
+                        
+                        messageNumberTracker = sendAfkMessage(messageNumberTracker)
+
+                        #reset timer
+                        afkMessageTimer = time.time()
 
     #calulate time to wait before next poll should occur
     timeToIdle = 50E-3 - (time.time() - pollFrequencyTimer)

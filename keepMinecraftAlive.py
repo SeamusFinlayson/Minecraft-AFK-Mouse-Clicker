@@ -2,11 +2,13 @@
 #author: Seamus Finlayson
 #date: 2022-12-26
 
-#include libraries
+#include pip installed packages
 import pyautogui
-import time
 import keyboard
 import pygetwindow
+
+#include packages from the standard library
+import time
 import random
 
 #seed random number generation
@@ -169,11 +171,6 @@ while not quit:
             #change state to inactive
             state = INACTIVE
 
-            #send afk message to server
-            # pyautogui.write('t')
-            # pyautogui.write("automated message: back")
-            # pyautogui.press('enter')
-
         #state machine
         match state:
             case 0:
@@ -189,11 +186,6 @@ while not quit:
 
                     doTorchAction()
 
-                    #send afk message to server
-                    # pyautogui.write('t')
-                    # pyautogui.write("automated message: afk")
-                    # pyautogui.press('enter')
-
                     #reset timers
                     clickingTimer = time.time()
                     afkMessageTimer = time.time()
@@ -207,11 +199,6 @@ while not quit:
                     state = ATTACKING
 
                     doAttackingAction()
-
-                    #send afk message to server
-                    # pyautogui.write('t')
-                    # pyautogui.write("automated message: afk")
-                    # pyautogui.press('enter')
 
                     #reset timers
                     clickingTimer = time.time()
@@ -239,11 +226,6 @@ while not quit:
 
                     #switch to inactive state
                     state = INACTIVE
-
-                    #send afk message to server
-                    # pyautogui.write('t')
-                    # pyautogui.write("automated message: back")
-                    # pyautogui.press('enter')
 
                 #detect user entering typing menu
                 elif keyboard.is_pressed('t'):
@@ -327,11 +309,6 @@ while not quit:
 
                     #switch to inactive state
                     state = INACTIVE
-
-                    #send afk message to server
-                    # pyautogui.write('t')
-                    # pyautogui.write("automated message: back")
-                    # pyautogui.press('enter')
 
                 #detect user entering typing menu
                 elif keyboard.is_pressed('t'):

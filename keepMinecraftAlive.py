@@ -24,7 +24,7 @@ random.seed()
 #         print("bad window")
 #     time.sleep(1)
 
-#startup
+#startup dialog
 print("*************************************************************")
 print("Minecraft AFK Mouse Clicker")
 print("")

@@ -374,6 +374,7 @@ while not quit:
                         #reset timer
                         afkMessageTimer = time.time()
 
+                    #check if last meal was more than 15 minutes ago
                     if (time.time() - eatingTimer) > 15*60:
 
                         doEatAction()

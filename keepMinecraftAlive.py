@@ -24,15 +24,19 @@ random.seed()
 #         print("bad window")
 #     time.sleep(1)
 
-#startup
+#startup dialog
 print("*************************************************************")
-print("Minecrat AFK Mouse Clicker")
-print("Places and breaks a torch every 5 seconds through automated mouse clicks.")
-print("In Minecraft equip a torch and face a wall.")
-print("Press 'ctrl + i' to turn clicking on.")
-print("Press 'ctrl + u' to turn clicking off. Clicking will automatically turn off when you jump, enter your inventory, or enter the game menu.")
-print("Press 'ctrl + o' (the letter) to terminate this program.")
+print("Minecraft AFK Mouse Clicker")
+print("")
+print("Controls:")
+print("Press 'ctrl + i' to enter torch placing mode")
+print("press 'ctrl + k' to enter attacking mode")
+print("Press 'ctrl + u' to exit torch placing or attacking mode (will automatically exit when you: jump, enter your inventory, or enter the game menu)")
+print("Press 'ctrl + o' (the letter) to terminate this program")
 print("Key presses are only registered when Minecraft is the active window and you are playing Multiplayer.")
+print("")
+print("For more go to:")
+print("https://github.com/sfinlayson126/Minecraft-AFK-Mouse-Clicker")
 print("*************************************************************")
 
 #initialize timer for clicking frequency
@@ -50,7 +54,7 @@ eatingTimer = time.time()
 #place and break torch
 def doTorchAction():
         
-    #indictate action in terminal
+    #indicate action in terminal
     print("doing torch action")
 
     pyautogui.click(button='right') #place torch
@@ -59,7 +63,7 @@ def doTorchAction():
 #attack monster
 def doAttackingAction():
 
-    #indictate action in terminal
+    #indicate action in terminal
     print("doing attacking action")
 
     pyautogui.click() #swing weapon
@@ -67,7 +71,7 @@ def doAttackingAction():
 #eat food to regenerate hunger bar
 def doEatAction():
 
-    #indictate action in terminal
+    #indicate action in terminal
     print("doing eating action")
 
     #start eating
@@ -195,7 +199,7 @@ while not quit:
                     #indicate state change in terminal
                     print("attacking")
 
-                    #switch to torchplacing state
+                    #switch to torch placing state
                     state = ATTACKING
 
                     doAttackingAction()
@@ -359,7 +363,7 @@ while not quit:
                         #reset timer
                         eatingTimer = time.time()
 
-    #calulate time to wait before next poll should occur
+    #calculate time to wait before next poll should occur
     timeToIdle = 50E-3 - (time.time() - pollFrequencyTimer)
     # print("Idle time", timeToIdle * 1000, " ms") #debug only
 

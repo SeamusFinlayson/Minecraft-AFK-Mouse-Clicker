@@ -24,7 +24,7 @@ If you wish to modify this script I recommend doing that in [VS Code](https://co
 
 `pip install pygetwindow`
 
-Then copy the path of the keepMionecraftAlive.py file you downloaded file by right clicking on it and selecting *Copy as path* then go back to the Windows PowerShell and enter `python <the path you copied>` without the angle brackets. Then the script should run in the terminal.
+Then copy the path of the keepMionecraftAlive.py file you downloaded by right clicking on it and selecting *Copy as path* then go back to the Windows PowerShell and enter `python <the path you copied>` without the angle brackets. Then the script should run in the terminal.
 
 ## How to Use the Script
 

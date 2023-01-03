@@ -20,7 +20,7 @@ If you wish to modify this script I recommend doing that in [VS Code](https://co
 
 `pip install pygetwindow`
 
-Then get the address of the keepMionecraftAlive.py file by right clicking on it and selecting *Copy as path* then go back to the Windows PowerShell and enter `python <the link you copied>` without the angle brackets. Then the script should run in the terminal.
+Then copy the path of the keepMionecraftAlive.py file you downloaded file by right clicking on it and selecting *Copy as path* then go back to the Windows PowerShell and enter `python <the path you copied>` without the angle brackets. Then the script should run in the terminal.
 
 ## How to Use the Script
 - Use torch placing mode if you are using a purely passive farm.

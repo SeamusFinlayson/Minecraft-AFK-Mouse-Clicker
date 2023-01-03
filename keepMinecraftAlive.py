@@ -2,11 +2,13 @@
 #author: Seamus Finlayson
 #date: 2022-12-26
 
-#include libraries
+#include pip installed packages
 import pyautogui
-import time
 import keyboard
 import pygetwindow
+
+#include packages from the standard library
+import time
 import random
 
 #seed random number generation

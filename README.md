@@ -2,6 +2,8 @@
 
 This Python script is designed to keep a Minecraft character active while a player is away from their keyboard (AFK). Minecraft realms and servers will automatically disconnect players who have been idle for "too long." Players, however, often create farms that will collect resources for them without any input from the player and being disconnected will interrupt this automatic resource collection.
 
+This script will automatcailly either repeatedly place and break a torch in the game OR attack mobs in a kill chamber and eat.
+
 ## Setup
 
 You will need to download this script and install [PyAutoGUI](https://pypi.org/project/PyAutoGUI/), [keyboard](https://pypi.org/project/keyboard/), and [PyGetWindow](https://pypi.org/project/PyGetWindow/) using pip.

@@ -1,6 +1,7 @@
 #filename: keepMinecraftAlive.py
 #author: Seamus Finlayson
-#date: 2022-12-26
+#date created: 2022-12-26
+#last updated: 2023-01-03
 
 #include pip installed packages
 import pyautogui

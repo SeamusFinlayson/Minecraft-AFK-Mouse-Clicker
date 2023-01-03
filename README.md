@@ -25,10 +25,11 @@ If you wish to modify this script I recommend doing that in [VS Code](https://co
 Then copy the path of the keepMionecraftAlive.py file you downloaded file by right clicking on it and selecting *Copy as path* then go back to the Windows PowerShell and enter `python <the path you copied>` without the angle brackets. Then the script should run in the terminal.
 
 ## How to Use the Script
-- Use torch placing mode if you are using a purely passive farm.
-- Use attacking mode if you are using an Ender Ender or Mob Grinder.
 
 ### Torch Placing Mode
+
+Use this mode if you are using a purely passive farm and just need to remain connected to the server or realm.
+
 1. Run the script
 2. In Minecraft face a wall and equip a torch
 3. Press ctrl+i to enter torch placing mode
@@ -38,6 +39,9 @@ Then copy the path of the keepMionecraftAlive.py file you downloaded file by rig
 7. When you're done press ctrl+o to terminate the script
 
 ### Attacking Mode
+
+Use this mode if you are using an Ender Ender or Mob Grinder and want to kill mobs while AFK. This mode will also automatically eat food to keep your character alive.
+
 1. Run the script
 2. In Minecraft equip a sword to your right hand and food to your left hand, then face the kill chamber.
 3. Press ctrl+k to enter attacking mode

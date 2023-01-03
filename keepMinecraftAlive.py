@@ -279,7 +279,7 @@ while not quit:
                         clickingTimer = time.time()
 
                     #check if last message was sent more than 15 minutes ago
-                    if (time.time() - afkMessageTimer) > 15*60:
+                    if (time.time() - afkMessageTimer) > 20*60:
                         
                         messageNumberTracker = sendAfkMessage(messageNumberTracker)
 

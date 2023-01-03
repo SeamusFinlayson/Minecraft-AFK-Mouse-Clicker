@@ -26,7 +26,7 @@ random.seed()
 
 #startup
 print("*************************************************************")
-print("Minecrat AFK Mouse Clicker")
+print("Minecraft AFK Mouse Clicker")
 print("Places and breaks a torch every 5 seconds through automated mouse clicks.")
 print("In Minecraft equip a torch and face a wall.")
 print("Press 'ctrl + i' to turn clicking on.")
@@ -50,7 +50,7 @@ eatingTimer = time.time()
 #place and break torch
 def doTorchAction():
         
-    #indictate action in terminal
+    #indicate action in terminal
     print("doing torch action")
 
     pyautogui.click(button='right') #place torch
@@ -59,7 +59,7 @@ def doTorchAction():
 #attack monster
 def doAttackingAction():
 
-    #indictate action in terminal
+    #indicate action in terminal
     print("doing attacking action")
 
     pyautogui.click() #swing weapon
@@ -67,7 +67,7 @@ def doAttackingAction():
 #eat food to regenerate hunger bar
 def doEatAction():
 
-    #indictate action in terminal
+    #indicate action in terminal
     print("doing eating action")
 
     #start eating
@@ -195,7 +195,7 @@ while not quit:
                     #indicate state change in terminal
                     print("attacking")
 
-                    #switch to torchplacing state
+                    #switch to torch placing state
                     state = ATTACKING
 
                     doAttackingAction()
@@ -359,7 +359,7 @@ while not quit:
                         #reset timer
                         eatingTimer = time.time()
 
-    #calulate time to wait before next poll should occur
+    #calculate time to wait before next poll should occur
     timeToIdle = 50E-3 - (time.time() - pollFrequencyTimer)
     # print("Idle time", timeToIdle * 1000, " ms") #debug only
 

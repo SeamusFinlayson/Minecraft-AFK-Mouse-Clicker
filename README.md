@@ -4,6 +4,8 @@ This Python script is designed to keep a Minecraft character active while a play
 
 This script will automatcailly either repeatedly place and break a torch in the game OR attack mobs in a kill chamber and eat in the game.
 
+Key presses will only be registered while Minecraft in multiplayer is the active window.
+
 ## Setup
 
 You will need to download this script and install [PyAutoGUI](https://pypi.org/project/PyAutoGUI/), [keyboard](https://pypi.org/project/keyboard/), and [PyGetWindow](https://pypi.org/project/PyGetWindow/) using pip.

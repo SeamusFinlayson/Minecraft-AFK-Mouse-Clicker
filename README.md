@@ -12,7 +12,7 @@ If you wish to modify this script I recommend doing that in [VS Code](https://co
 
 ### Windows 11 Command Line
 
-**If you just want to run the script** follow [this tutorial](https://www.dataquest.io/blog/installing-python-on-windows/) to install python and [this tutorial](https://www.dataquest.io/blog/install-pip-windows/) to install the pip package manager. Then run the three commands below in the Windows PowerShell.
+**If you just want to run the script** follow [this tutorial](https://www.dataquest.io/blog/installing-python-on-windows/) to install python and [this tutorial](https://www.dataquest.io/blog/install-pip-windows/) to install the pip package manager. You only need python 3, not Python 2 or Anaconda. Then run the three commands below in the Windows PowerShell.
 
 `pip install pyautogui`
 

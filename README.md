@@ -27,8 +27,8 @@ Then copy the path of the keepMionecraftAlive.py file you downloaded file by rig
 - Use attacking mode if you are using an Ender Ender or Mob Grinder.
 
 ### Torch Placing Mode
-1. Run the program before you start up Minecraft
-2. Face a wall and equip a torch
+1. Run the script
+2. In Minecraft face a wall and equip a torch
 3. Press ctrl+i to enter torch placing mode
 4. Go AFK then come back
 5. Press ctrl+u, jump (press the space key), go to the game menu (press escape), or enter your inventory (press e) to exit torch placing mode
@@ -36,8 +36,8 @@ Then copy the path of the keepMionecraftAlive.py file you downloaded file by rig
 7. When you're done press ctrl+o to terminate the script
 
 ### Attacking Mode
-1. Run the program before you start up Minecraft
-2. Equip a sword to your right hand and food to your left hand, then face the kill chamber.
+1. Run the script
+2. In Minecraft equip a sword to your right hand and food to your left hand, then face the kill chamber.
 3. Press ctrl+k to enter attacking mode
 4. Go AFK then come back
 5. Press ctrl+u, jump (press the space key), go to the game menu (press escape), or enter your inventory (press e) to exit attacking mode

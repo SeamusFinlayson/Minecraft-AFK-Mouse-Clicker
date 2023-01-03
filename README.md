@@ -1,6 +1,6 @@
 # Minecraft-AFK-Mouse-Clicker
 
-This Python script is designed to keep a Minecraft character active while a player is away from their keyboard (AFK). Minecraft realms and servers will automatically disconnect players who have been idle for "too long." Players, however, often create farms that will collect resources for them without any input from the player and being disconnected will interrupt this automatic resource collection.
+This Python script is designed to keep a Minecraft character active while a player is away from their keyboard (AFK) using automated mouse clicks. Minecraft realms and servers will automatically disconnect players who have been idle for too long. Minecraft players, however, often create farms that will collect resources for them without any input from the player and being disconnected will interrupt this automatic resource collection. This script allows the player to be AFK for hours at a time and not disconnect from the game.
 
 This script will automatcailly either repeatedly place and break a torch in the game OR attack mobs in a kill chamber and eat in the game.
 
@@ -54,11 +54,8 @@ Use this mode if you are using an Ender Ender or Mob Grinder and want to kill mo
 
 ## Don't Have a Farm?
 
-Follow one of these tutorials.
-
-[Build an Iron Farm](https://www.youtube.com/watch?v=xDJtXznj8Fg)
-
-[Build a Mob Grinder](https://www.youtube.com/watch?v=USL0h4-nul4)
-
-[Build an Ender Ender](https://www.youtube.com/watch?v=nh8voJScSbw)
+Follow one of these tutorials:
+- [Build an Iron Farm](https://www.youtube.com/watch?v=xDJtXznj8Fg)
+- [Build a Mob Grinder](https://www.youtube.com/watch?v=USL0h4-nul4)
+- [Build an Ender Ender](https://www.youtube.com/watch?v=nh8voJScSbw)
 

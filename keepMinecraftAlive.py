@@ -42,6 +42,9 @@ pollFrequencyTimer = time.time()
 #variable for sending an AFK message every 15 minutes
 afkMessageTimer = time.time()
 
+#variable to track time since the player last ate
+eatingTimer = time.time()
+
 #place and break torch
 def doTorchAction():
         
@@ -276,7 +279,7 @@ while not quit:
                         clickingTimer = time.time()
 
                     #check if last message was sent more than 15 minutes ago
-                    if (time.time() - afkMessageTimer) > 15*60:
+                    if (time.time() - afkMessageTimer) > 20*60:
                         
                         messageNumberTracker = sendAfkMessage(messageNumberTracker)
 
@@ -364,12 +367,20 @@ while not quit:
                         clickingTimer = time.time()
 
                     #check if last message was sent more than 15 minutes ago
-                    if (time.time() - afkMessageTimer) > 15*60:
+                    if (time.time() - afkMessageTimer) > 20*60:
                         
                         messageNumberTracker = sendAfkMessage(messageNumberTracker)
 
                         #reset timer
                         afkMessageTimer = time.time()
+
+                    #check if last meal was more than 15 minutes ago
+                    if (time.time() - eatingTimer) > 15*60:
+
+                        doEatAction()
+
+                        #reset timer
+                        eatingTimer = time.time()
 
     #calulate time to wait before next poll should occur
     timeToIdle = 50E-3 - (time.time() - pollFrequencyTimer)

@@ -1,10 +1,19 @@
 # Minecraft-AFK-Mouse-Clicker
 
-This Python script is designed to keep a Minecraft character active while a player is away from their keyboard (AFK) using automated mouse clicks. Minecraft realms and servers will automatically disconnect players who have been idle for too long. Minecraft players, however, often create farms that will collect resources for them without any input from the player and being disconnected will interrupt this automatic resource collection. This script allows the player to be AFK for hours at a time and not disconnect from the game.
+## What is this?
 
-This script will automatcailly either repeatedly place and break a torch in the game OR attack mobs in a kill chamber and eat in the game.
+This Python script is designed to keep a Minecraft character active while a player is away from their keyboard (AFK) using automated mouse clicks. Minecraft realms and servers will automatically disconnect players who have been idle for too long. Minecraft players, however, often create farms that will collect resources for them without any input from the player and being disconnected will interrupt this automatic resource collection. This script allows the player to be AFK for hours at a time and not disconnect from the game. This script will automatcailly either repeatedly place and break a torch in the game OR attack mobs in a kill chamber and eat in the game.
 
-Key presses will only be registered while Minecraft in multiplayer is the active window.
+## Features
+
+* Automated placing and breaking of torches
+* Automated attacking for AFK farms
+* Automated eating
+* Automated messages sent to Minecraft chat to let your friends know you're AFK (or just to annoy them)
+* Can be controlled without leaving the Minecraft window
+* Ignores all key presses when Minecraft is not the active window
+* Pauses automated tasks when the user selects a window that is not Minecraft
+* Pauses automated tasks when user enters minecraft chat by pressing 'T'
 
 ## Setup
 

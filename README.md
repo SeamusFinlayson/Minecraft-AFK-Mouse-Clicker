@@ -1,6 +1,6 @@
 # Minecraft-AFK-Mouse-Clicker
 
-## What is this?
+## What Is This?
 
 This Python script is designed to keep a Minecraft character active while a player is away from their keyboard (AFK) using automated mouse clicks. Minecraft realms and servers will automatically disconnect players who have been idle for too long. Minecraft players, however, often create farms that will collect resources for them without any input from the player and being disconnected will interrupt this automatic resource collection. This script allows the player to be AFK for hours at a time and not disconnect from the game. This script will automatcailly either repeatedly place and break a torch in the game OR attack mobs in a kill chamber and eat in the game.
 
@@ -21,7 +21,7 @@ You will need to download this script and install [PyAutoGUI](https://pypi.org/p
 
 ### Windows 11 Command Line
 
-**If you just want to run the script** go to the [windows store and download python 3.10](https://apps.microsoft.com/store/detail/python-310/9PJPW5LDXLZ5) Then run the three commands below in the Windows PowerShell.
+**If you just want to run the script** go to the [windows store and download python 3.10](https://apps.microsoft.com/store/detail/python-310/9PJPW5LDXLZ5). Then run the three commands below in the Windows PowerShell.
 
 `pip install pyautogui`
 

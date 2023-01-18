@@ -21,7 +21,7 @@ You will need to download this script and install [PyAutoGUI](https://pypi.org/p
 
 ### Windows 11 Command Line
 
-**If you just want to run the script** go to the [windows store and download python 3.10](https://apps.microsoft.com/store/detail/python-310/9PJPW5LDXLZ5). Then run the three commands below in the Windows PowerShell.
+If you only want to *run* the script go to the [Microsoft Store and download Python 3.10](https://apps.microsoft.com/store/detail/python-310/9PJPW5LDXLZ5). Then run the three commands below in the Windows PowerShell.
 
 `pip install pyautogui`
 
@@ -33,7 +33,7 @@ Then copy the path of the keepMinecraftAlive.py file you downloaded by right cli
 
 ### VS Code
 
-If you wish to modify this script I recommend doing that in [VS Code](https://code.visualstudio.com/) because it is light weight and easy for your computer to run in the background. You can find tutorials to set this up on YouTube.
+If you wish to *modify* this script I recommend doing that in [VS Code](https://code.visualstudio.com/) because it is light weight and easy for your computer to run in the background. You can find tutorials to set this up on YouTube.
 
 ## How to Use the Script
 

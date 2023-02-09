@@ -20,6 +20,7 @@ This script will automatcailly either:
 * Ignores all key presses when Minecraft is not the active window
 * Pauses automated tasks when the user selects a window that is not Minecraft
 * Pauses automated tasks when user enters minecraft chat by pressing 'T'
+* Uses timing to lock program polling rate and minimize CPU ussage
 
 ## Setup
 

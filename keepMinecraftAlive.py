@@ -161,7 +161,7 @@ while not quit:
 
     #check if minecraft in multiplayer is the active window
     windowTitle = str(pygetwindow.getActiveWindowTitle())
-    if windowTitle.startswith("Minecraft ") and windowTitle.count("Multiplayer"):
+    if windowTitle.startswith("Minecraft") and windowTitle.count("Multiplayer"):
 
         #detect exit key pressed
         if keyboard.is_pressed('ctrl+o'):

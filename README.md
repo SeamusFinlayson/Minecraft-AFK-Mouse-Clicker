@@ -12,6 +12,16 @@ This script will automatcailly either:
 
 ## Features
 
+### Technical Features
+
+* Gets user's keyboard input
+* Simulates keyboard input
+* Detects active window
+* Tracks delta time to set maximum program polling rate to 20 Hz and minimize CPU usage
+* Sets current functionality based on a state determined by the user's key presses
+
+### Functional Features
+
 * Automated placing and breaking of torches
 * Automated attacking for AFK farms
 * Automated eating
@@ -20,7 +30,6 @@ This script will automatcailly either:
 * Ignores all key presses when Minecraft is not the active window
 * Pauses automated tasks when the user selects a window that is not Minecraft
 * Pauses automated tasks when user enters minecraft chat by pressing 'T'
-* Uses timing to lock program polling rate and minimize CPU ussage
 
 ## Setup
 
